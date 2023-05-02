@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import mongoose from "mongoose";
 import cors from "cors";
+import "dotenv/config.js";
 import {
   registerValidation,
   loginValidation,
@@ -12,10 +13,12 @@ import { UserController, PostController } from "./controllers/index.js";
 
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
+const PORT = process.env.PORT || 4444;
+const MONGO_URI = process.env.MONGO_URI;
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(MONGO_URI)
   .then(() => console.log("DB connected successfully!"))
-  .catch((err) => console.log(process.env.MONGODB_URI));
+  .catch((err) => console.log(err));
 
 const app = express();
 
@@ -74,7 +77,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(PORT, (err) => {
   if (err) console.log(err);
-  console.log("Server is running on port 4444");
+  console.log(`Server is running on port ${PORT}`);
 });
