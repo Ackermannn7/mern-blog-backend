@@ -13,7 +13,7 @@ import { UserController, PostController } from "./controllers/index.js";
 
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
-const PORT = process.env.PORT || 4444;
+const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
 mongoose
   .connect(MONGO_URI)
