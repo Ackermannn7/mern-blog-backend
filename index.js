@@ -13,9 +13,7 @@ import { UserController, PostController } from "./controllers/index.js";
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
 mongoose
-  .connect(
-    "mongodb+srv://admin:Qweasdzxc@cluster0.s7bwyba.mongodb.net/dolls-shop?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("DB connected successfully!"))
   .catch((err) => console.log("DB error!", err));
 
@@ -76,7 +74,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) console.log(err);
   console.log("Server is running on port 4444");
 });
