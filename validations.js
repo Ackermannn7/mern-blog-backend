@@ -17,14 +17,17 @@ export const registerValidation = [
 ];
 
 export const postCreateValidation = [
-  body("title", "Enter the title of an article")
+  body(
+    "title",
+    "The title of the article should be at least 3 characters long!"
+  )
     .isLength({ min: 3 })
     .isString(),
-  body("text", "Enter the text of an article")
+  body("text", "The text of the article should be at least 3 characters long!")
     .isLength({
-      min: 10,
+      min: 3,
     })
     .isString(),
-  body("tags", "Incorrect tag format (set an array)").optional().isString(),
+  body("tags", "Incorrect tag format").optional().isString(),
   body("imageUrl", "Incorrect link of the image").optional().isString(),
 ];
