@@ -13,10 +13,8 @@ import { UserController, PostController } from "./controllers/index.js";
 
 import { handleValidationErrors, checkAuth } from "./utils/index.js";
 
-const PORT = process.env.PORT;
-const MONGO_URI = process.env.MONGO_URI;
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("DB connected successfully!"))
   .catch((err) => console.log(err));
 
@@ -77,7 +75,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(PORT, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) console.log(err);
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
