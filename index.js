@@ -37,7 +37,7 @@ const upload = multer({ storage });
 
 app.use(express.json());
 app.use(cors());
-app.use("uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 app.post(
   "/auth/login",
@@ -55,7 +55,7 @@ app.get("/auth/me", checkAuth, UserController.getMe);
 
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
   res.json({
-    url: `/uploads/${req.file.originalname}`,
+    url: `uploads/${req.file.originalname}`,
   });
 });
 app.get("/tags", PostController.getLastTags);
