@@ -2,7 +2,6 @@ import express from "express";
 import multer from "multer";
 import mongoose from "mongoose";
 import cors from "cors";
-import "dotenv/config.js";
 import {
   registerValidation,
   loginValidation,
